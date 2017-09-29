@@ -27,9 +27,9 @@
 		<ul class="burger-item">
 		{{#each burgers}}
 			{{#if this.devoured}}
-		  <li class="chip burger-item">
+		  <li action="/{{this.id}}?_method=DELETE" method="DELETE" class="chip burger-item">
 		    {{this.burger_name}}
-				<i action="/{{this.id}}?_method=DELETE" method="DELETE" class="close material-icons">close</i>
+				<i class="close material-icons">close</i>
 		  </li>
 		  {{/if}}
 			{{/each}}
