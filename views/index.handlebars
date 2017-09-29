@@ -27,9 +27,10 @@
 		<ul class="burger-item">
 		{{#each burgers}}
 			{{#if this.devoured}}
-		  <li action="/{{this.id}}?_method=DELETE" method="DELETE" class="chip burger-item">
+		  <li class="chip burger-item">
 		    {{this.burger_name}}
-				<i class="close material-icons">close</i>
+				{{!-- to delete burgers from database on tag close --}}
+				<i action="/{{this.id}}?_method=DELETE" method="POST" class="close material-icons">close</i>
 		  </li>
 		  {{/if}}
 			{{/each}}
