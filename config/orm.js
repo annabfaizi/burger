@@ -2,7 +2,7 @@
 var connection = require("../config/connection.js");
 
 var orm = {
-    selectAll: function(tableInput, cb) {
+    all: function(tableInput, cb) {
         var queryString = "SELECT * FROM " + tableInput + ";";
         connection.query(queryString, function(err, result) {
             if (err) {
@@ -11,7 +11,8 @@ var orm = {
             cb(result);
         });
     },
-    createOne: function(tableInput, name, cb) {
+    
+    create: function(tableInput, name, cb) {
         var queryString = "INSERT INTO " + tableInput + " (burger_name, devoured) ";
         queryString += "VALUES ('";
         queryString += name.toString();
@@ -26,7 +27,8 @@ var orm = {
             cb(result);
         });
     },
-    updateOne: function(tableInput, change, condition, cb) {
+
+    update: function(tableInput, change, condition, cb) {
         var queryString = "UPDATE " + tableInput;
         queryString += " SET ";
         queryString += change;
@@ -38,7 +40,20 @@ var orm = {
                 if (err) {
                     throw err;
                 }
+                cb(result);
+            });
+    },
 
+    delete: function(tableInput, condition, cb) {
+        var queryString = "DELETE FROM " + tableInput;
+        queryString += " WHERE ";
+        queryString += condition;
+
+        console.log(queryString);
+        connection.query(queryString, function(err, result) {
+                if (err) {
+                    throw err;
+                }
                 cb(result);
             });
         }

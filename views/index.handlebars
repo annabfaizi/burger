@@ -1,17 +1,17 @@
 <div class="container">
 	<h1>BURGER BISTRO</h1>
 <div class="columns">
-	<div class="column">
+	<div class="row">
 		
-		<ul>
+		<ul class="burger-list">
 		{{#each burgers}}
 			{{#unless this.devoured}}
-		  <li class="burger-item">
-		  	<div class="card">
-		  		<div class="card-content" >
-			  		<form action="{{this.id}}?_method=PUT" method="POST" style="display: flex; align-items: center;">
+		  <li class="burger-list">
+		  	<div class="card col s4">
+		  		<div class="card-content black-text">
+			  		<form action="{{this.id}}?_method=PUT" method="POST">
 				    <b>{{this.burger_name}}</b>
-					<button class="button is-danger" style= "margin-left: 10px;"><i class="fa fa-cutlery" aria-hidden="true"></i></button>	
+					<button class="waves-effect waves-light btn"><i class="material-icons">restaurant_menu</i></button>	
 				</div>
 		  	</div>
 		  	
@@ -23,22 +23,27 @@
 		
 	</div>
 	<div class="column">
-		<ul>
+		<h5>EATEN BURGERS</h5>
+		<ul class="burger-item">
 		{{#each burgers}}
 			{{#if this.devoured}}
-		  <li class="burger-item">
+		  <li class="chip burger-item">
 		    {{this.burger_name}}
+				<i action="/{{this.id}}?_method=DELETE" method="DELETE" class="close material-icons">close</i>
 		  </li>
 		  {{/if}}
-		{{/each}}
+			{{/each}}
+		
 		</ul>
 	</div>
 	
 </div>
-	
+
+<div class="input-field">	
 	<form action="/" method="POST">
-		<input type="text" class="input" placeholder="Enter burger name" name="name"><br>
-		<button class="button is-primary is-large" style="background-color:#148232">Submit</button>
+		<input type="text" class="input" placeholder="Enter your burger name" name="name"><br>
 	</form>
-	
+	<br>
+	<button class="waves-effect waves-red btn"><i class="material-icons right">room_service</i>Order Up!</button>
+</div>	
 </div>
